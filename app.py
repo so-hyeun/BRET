@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, url_for
 from flask_bootstrap import Bootstrap
-from werkzeug.utils import redirect
+from werkzeug.utils import redirect, secure_filename
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -17,9 +17,14 @@ def index():
 def ChemDis():
     return render_template('Chemical_Disease.html')
 
-@app.route('/Drug_Drug.html')
+@app.route('/Drug_Drug.html', methods=['GET','POST'])
 def DrugDrug():
-    return render_template('Drug_Drug.html')
+    if request.method == 'GET':
+        return render_template('Drug_Drug.html')
+    elif request.method == 'POST':
+        f = request.files['file']
+        f.save(secure_filename(f.filename))
+        return 'file uploaded successfully'
 
 @app.route('/Gene_Disease.html')
 def GeneDise():
