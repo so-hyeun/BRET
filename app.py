@@ -1,9 +1,15 @@
+import os
+
 from flask import Flask, request, render_template, url_for
 from flask_bootstrap import Bootstrap
 from werkzeug.utils import redirect, secure_filename
 
+UPLOAD_DIR = "static/result_file/"
+
 app = Flask(__name__)
+app.config['UPLOAD_DIR'] = UPLOAD_DIR
 Bootstrap(app)
+
 
 @app.route('/')
 def home():
@@ -22,8 +28,10 @@ def DrugDrug():
     if request.method == 'GET':
         return render_template('Drug_Drug.html')
     elif request.method == 'POST':
-        f = request.files['file']
-        f.save(secure_filename(f.filename))
+        f = request.files['fileToUpload']
+        fname = secure_filename(f.filename)
+        path = app.config['UPLOAD_DIR']+fname
+        f.save(path)
         return 'file uploaded successfully'
 
 @app.route('/Gene_Disease.html')
@@ -36,4 +44,4 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
