@@ -70,7 +70,7 @@
 
   <main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
+   <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
 
@@ -78,16 +78,21 @@
           <h2>Drug-Drug Relation Extraction</h2>
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li>Drug-Drug</li>
+            <li>Gene-Disease</li>
           </ol>
         </div>
 
       </div>
     </section><!-- End Breadcrumbs -->
 
-        <!-- ====== File upload ===== -->
+    <!-- ======= Pricing Section ======= -->
+
+    <!-- ====== File upload ===== -->
     <section id="fileupload" class="fileupload">
       <div class="container">
+        <h5>Please upload the .txt file with the following format.</h5>
+        <h6>EX) Concomitant <span style="background-color:yellow"> @DRUG$ </span> administration decreased the mean AUC of total <span style="background-color:yellow"> @DRUG$ </span>approximately 55%.</h6>
+        <div> &nbsp; </div>
         <div class="d-flex justify-content-between align-items-center">
           <form action="http://localhost:5000//Drug_Drug.html" method="post" enctype="multipart/form-data">
             Select file to upload:
@@ -96,9 +101,24 @@
 
           </form>
       </div>
-        </div>
-    </section><!-- End File upload -->
+        <div> &nbsp; </div>
+        <button type="button" class="btn btn-danger">Download</button>
+        <button type="button" class="btn btn-danger">About labels</button>
+        <p>
+          <textarea cols="120" rows="10" readonly="readonly">Result</textarea>
 
+
+        </p>
+        </div>
+    </section>
+    <!-- End File upload -->
+    <section id="faq" class="faq">
+      <div class="container">
+
+
+
+      </div>
+    </section><!-- End Frequently Asked Questions Section -->
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->

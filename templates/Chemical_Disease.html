@@ -90,29 +90,38 @@
     <!-- ====== File upload ===== -->
     <section id="fileupload" class="fileupload">
       <div class="container">
+        <h5>Please upload the .txt file with the following format.</h5>
+        <h6>EX) In defects of <span style="background-color:yellow">BC6ENTG</span> , <span style="background-color:yellow">BC6OTHER</span> is transformed to <span style="background-color:yellow">BC6ENTC</span> , resulting in high levels of <span style="background-color:yellow">BC6OTHER</span> in the body.</h6>
+        <div> &nbsp; </div>
         <div class="d-flex justify-content-between align-items-center">
-          <form action="http://localhost:5000//Drug_Drug.html" method="post" enctype="multipart/form-data">
+
+          <form action="http://localhost:5000//Chemical_Disease.html" method="post" enctype="multipart/form-data">
             Select file to upload:
             <input type="file" name="fileToUpload" id="fileToUpload" >
             <input type="submit" value="Upload file" name="submit" class="btn btn-danger" >
 
           </form>
       </div>
+        <div> &nbsp; </div>
+        <button type="button" class="btn btn-danger">Download</button>
+        <button type="button" class="btn btn-danger">About labels</button>
+        <p>
+          <textarea cols="120" rows="10" readonly="readonly">Result</textarea>
+
+
+        </p>
         </div>
     </section>
     <!-- End File upload -->
 
-    <!-- extraction result -->
-    <section id="result" class="result">
-      <div class="container">
-        <button class="download_button" type="button">Download</button>
-        <button class="about_labels" type="button">About labels</button>
-        <p>
-          <input type="text" value="relation extraction result" readonly="readonly" />
-        </p>
-      </div>
-    </section>
 
+  <section id="faq" class="faq">
+      <div class="container">
+
+
+
+      </div>
+    </section><!-- End Frequently Asked Questions Section -->
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
