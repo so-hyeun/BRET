@@ -1286,8 +1286,26 @@ section {
   color: #8795a4;
 }
 
-.contact .info .email, .contact .info .phone {
-  margin-top: 40px;
+.contact .info .logo div {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.contact .info .logo .lab-logo img {
+  width: 200px;
+}
+
+.contact .info .logo .school-logo {
+  margin-top: 20px;
+}
+
+.contact .info .logo .school-logo .school-imgs img {
+  width: 200px;
+}
+
+.contact .info .address, .contact .info .email, .contact .info .call {
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .contact .info .email:hover i, .contact .info .address:hover i, .contact .info .phone:hover i {
@@ -2015,12 +2033,18 @@ section {
   margin-bottom: 30px;
 }
 
+#footer .footer-top .footer-info img {
+  width: 186px;
+  height: 53px;
+  margin-bottom: 10px;
+}
+
 #footer .footer-top .footer-info h3 {
-  font-size: 24px;
+  font-size: 18px;
   margin: 0 0 20px 0;
   padding: 2px 0 2px 0;
   line-height: 1;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 #footer .footer-top .footer-info p {
