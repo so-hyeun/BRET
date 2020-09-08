@@ -24,6 +24,7 @@ def index():
 @app.route('/Chemical_Disease.html',methods=['GET','POST'])
 def ChemDis():
     if 'download' in request.form:
+        
         download_chemdis("static/result/ChemDis_result.txt")
     if request.method == 'GET':
         return render_template('Chemical_Disease.html')
