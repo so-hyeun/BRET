@@ -1,7 +1,8 @@
 import os
-
-from flask import Flask, request, render_template, url_for
 from flask_bootstrap import Bootstrap
+from flask import Flask, request, render_template, url_for
+
+
 from werkzeug.utils import redirect, secure_filename
 
 UPLOAD_DIR = "static/result_file/"
