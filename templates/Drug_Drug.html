@@ -6,6 +6,25 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>BRET-Drug_Drug</title>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript">
+    jQuery(document).ready(function() {
+
+        jQuery("#displayDiv").hide();
+        jQuery("#btn").click(function() {
+
+            if(jQuery("#displayDiv").css("display") == "none") {
+
+                jQuery("#displayDiv").slideDown();
+            }
+
+            else {
+
+                jQuery("#displayDiv").slideUp();
+            }
+        });
+    });
+  </script>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -104,7 +123,10 @@
         <div> &nbsp; </div>
         <a href = "static/result/DrugDrug_result.txt" download = "Drug_Drug Relation Extraction Result.txt"><button type=button class="btn btn-danger">Download</button></a>
         
-        <button type="button" class="btn btn-danger">About labels</button>
+        <button type="button" id="btn" class="btn btn-danger">About labels</button>
+        <div id="displayDiv">
+          <img src="static/img/slide/ddi_label.png">
+        </div>
         <p>
           <textarea cols="120" rows="10" readonly="readonly">&nbsp;{{model_result}}&nbsp;</textarea>
 
