@@ -1291,12 +1291,12 @@ section {
   margin-left: auto;
 }
 
-.contact .info .logo .lab-logo img {
-  width: 200px;
-}
-
 .contact .info .logo .school-logo {
   margin-top: 20px;
+}
+
+.contact .info .logo .lab-logo img {
+  width: 200px;
 }
 
 .contact .info .logo .school-logo .school-imgs img {
