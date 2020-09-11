@@ -61,22 +61,22 @@
   <header id="header" class="fixed-top header-inner-pages">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo"><a href="index.html">BRET</a></h1>
+      <h1 class="logo"><a href="/">BRET</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="static/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav class="nav-menu d-none d-lg-block">
 
         <ul>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
 
           
 
-          <li><a href="Chemical_Disease.html">Chemical-Disease</a></li>
-          <li class="active"><a href="Drug_Drug.html">Drug-Drug</a></li>
-          <li><a href="Gene_Disease.html">Gene-Disease</a></li>
+          <li><a href="/Chemical-Disease">Chemical-Disease</a></li>
+          <li class="active"><a href="/Drug-Drug">Drug-Drug</a></li>
+          <li><a href="/Gene-Disease">Gene-Disease</a></li>
           
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="/contact">Contact</a></li>
 
         </ul>
 
@@ -96,7 +96,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Drug-Drug Relation Extraction</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li>Gene-Disease</li>
           </ol>
         </div>
@@ -113,7 +113,7 @@
         <h6>EX) Concomitant <span style="background-color:yellow"> @DRUG$ </span> administration decreased the mean AUC of total <span style="background-color:yellow"> @DRUG$ </span>approximately 55%.</h6>
         <div> &nbsp; </div>
         <div class="d-flex justify-content-between align-items-center">
-          <form action="http://localhost:5000//Drug_Drug.html" method="post" enctype="multipart/form-data">
+          <form action="http://localhost:5000/Drug-Drug" method="post" enctype="multipart/form-data">
             Select file to upload:
             <input type="file" name="fileToUpload" id="fileToUpload" >
             <input type="submit" value="Upload file" name="submit" class="btn btn-danger" >

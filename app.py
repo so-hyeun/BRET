@@ -17,15 +17,11 @@ app.config['FLAG'] = 'not Ready' ##Ready상태면 업로드한 파일이 있다!
 def home():
     return render_template('index.html')
 
-@app.route('/index.html')
-def index():
-    return render_template('index.html')
-
-@app.route('/Chemical_Disease.html',methods=['GET','POST'])
+@app.route('/Chemical-Disease',methods=['GET','POST'])
 def ChemDis():
     if 'download' in request.form and app.config['FLAG']=="Ready":
 
-        download_chemdis("static/result/ChemDis_result.txt")
+        download_chemdis("static/result/ChemDis-result.txt")
     if request.method == 'GET':
         return render_template('Chemical_Disease.html')
     elif request.method == 'POST':
@@ -45,7 +41,7 @@ def download_drugdrug(filename):
 def download_genedis(filename):
     return send_from_directory("static/result/GeneDis_result.txt", filename="filename.txt")
 
-@app.route('/Drug_Drug.html', methods=['GET','POST'])
+@app.route('/Drug-Drug', methods=['GET','POST'])
 def DrugDrug():
     if 'download' in request.form:
         download_chemdis("static/result/DrugDrug_result.txt")
@@ -65,7 +61,7 @@ def DrugDrug():
 
 
 
-@app.route('/Gene_Disease.html', methods=['GET','POST'])
+@app.route('/Gene-Disease', methods=['GET','POST'])
 def GeneDise():
     if 'download' in request.form:
         download_chemdis("static/result/GeneDis_result.txt")
@@ -80,7 +76,7 @@ def GeneDise():
         fw.write(result)
         return render_template('Gene_Disease.html', model_result=result)
 
-@app.route('/contact.html')
+@app.route('/contact')
 def contact():
     return render_template('contact.html')
 
