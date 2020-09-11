@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config['UPLOAD_DIR'] = UPLOAD_DIR
 Bootstrap(app)
 file_path = "result/"
-app.config['FLAG'] = 'Ready' ##Ready상태면 업로드한 파일이 있다! 즉, 다운로드를 할 수 있다
+app.config['FLAG'] = 'not Ready' ##Ready상태면 업로드한 파일이 있다! 즉, 다운로드를 할 수 있다
 
 @app.route('/')
 def home():
@@ -23,8 +23,8 @@ def index():
 
 @app.route('/Chemical_Disease.html',methods=['GET','POST'])
 def ChemDis():
-    if 'download' in request.form:
-        
+    if 'download' in request.form and app.config['FLAG']=="Ready":
+
         download_chemdis("static/result/ChemDis_result.txt")
     if request.method == 'GET':
         return render_template('Chemical_Disease.html')
@@ -35,6 +35,7 @@ def ChemDis():
         result = chem_dis_func("file ") #이 함수에 사용자가 upload한 file
         fw = open("static/result/ChemDis_result.txt",'w')
         fw.write(result)
+        app.config['FLAG'] = 'Ready'
         return render_template('Chemical_Disease.html', model_result=result)
 
 def download_chemdis(filename):
@@ -56,7 +57,9 @@ def DrugDrug():
         
         
         result = drug2_func("file ") #이 함수에 사용자가 upload한 file
-        fw = open("static/result/DrugDrug_result.txt",'w')
+
+
+        fw = open("static/result/DrugDrug_result.txt",'w') #predict result 저장 위치
         fw.write(result)
         return render_template('Drug_Drug.html', model_result=result)
 
