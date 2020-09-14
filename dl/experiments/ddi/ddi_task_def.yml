@@ -1,0 +1,18 @@
+ddi:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - DDI-mechanism
+  - DDI-effect
+  - DDI-advise
+  - DDI-int
+  - DDI-false
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 5
+  task_type: Classification
+  task_weight: 1 ################################## 

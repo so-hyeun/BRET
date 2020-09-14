@@ -1,0 +1,180 @@
+gad1:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 6
+  split_names:
+  - train
+  - test
+gad2:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 6
+  split_names:
+  - train
+  - test
+gad3:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 6
+  split_names:
+  - train
+  - test
+gad4:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 6
+  split_names:
+  - train
+  - test
+gad5:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 6
+  split_names:
+  - train
+  - test
+gad6:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 6
+  split_names:
+  - train
+  - test
+gad7:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 6
+  split_names:
+  - train
+  - test
+gad8:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 6
+  split_names:
+  - train
+  - test
+gad9:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 6
+  split_names:
+  - train
+  - test
+gad10:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 6
+  split_names:
+  - train
+  - test

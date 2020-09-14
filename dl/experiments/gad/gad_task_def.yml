@@ -1,0 +1,252 @@
+gad1:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 1
+  split_names:
+  - train
+  - test
+gad2:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 1
+  split_names:
+  - train
+  - test
+gad3:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 1
+  split_names:
+  - train
+  - test
+gad4:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 1
+  split_names:
+  - train
+  - test
+gad5:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 1
+  split_names:
+  - train
+  - test
+gad6:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 1
+  split_names:
+  - train
+  - test
+gad7:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 1
+  split_names:
+  - train
+  - test
+gad8:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 1
+  split_names:
+  - train
+  - test
+gad9:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 1
+  split_names:
+  - train
+  - test
+gad10:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - 0
+  - 1
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 2
+  task_type: Classification
+  task_weight: 1
+  split_names:
+  - train
+  - test
+chemprotnew:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - CPR:3
+  - CPR:4
+  - CPR:5
+  - CPR:6
+  - CPR:9
+  - CPR:false
+  metric_meta:
+  - PRF
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 6
+  task_type: Classification
+  task_weight: 1
+disease:
+  data_format: Seqence
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: False
+  labels:
+  - O
+  - B-disease
+  - I-disease
+  - X
+  - CLS
+  - SEP
+  metric_meta:
+  - SeqEval
+  n_class: 6
+  loss: SeqCeCriterion
+  split_names:
+  - train
+  - dev
+  - test
+  task_type: SeqenceLabeling
+  task_weight: 1
+ddi:
+  data_format: PremiseOnly
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  labels:
+  - DDI-mechanism
+  - DDI-effect
+  - DDI-advise
+  - DDI-int
+  - DDI-false
+  metric_meta:
+  - ACC
+  loss: CeCriterion
+  kd_loss: MseCriterion
+  n_class: 5
+  task_type: Classification
+  task_weight: 1
+asq5b:
+  data_format: MRC
+  encoder_type: BERT
+  dropout_p: 0.1
+  enable_san: false
+  metric_meta:
+    - EmF1
+  n_class: 2
+  task_type: Span
+  loss: SpanCeCriterion
+  split_names:
+    - train
+  task_weight: 1
