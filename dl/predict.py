@@ -48,7 +48,7 @@ task_type = task_defs._task_type_map[args.task]
 metric_meta = task_defs._metric_meta_map[args.task]
 # load model
 checkpoint_path = "dl/"+args.checkpoint
-assert os.path.exists(checkpoint_path)
+assert os.path.exists("dl/"+checkpoint_path)
 if args.cuda:
     state_dict = torch.load(checkpoint_path, map_location="cpu")
 else:
