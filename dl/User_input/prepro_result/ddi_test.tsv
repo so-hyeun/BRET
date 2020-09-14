@@ -1,5 +1,0 @@
-0	DDI-false	@DRUG$: Concomitant @DRUG$ administration decreased the mean AUC of total ezetimibe approximately 55%.
-1	DDI-false	@DRUG$: Concomitant cholestyramine administration decreased the mean AUC of total @DRUG$ approximately 55%.
-2	DDI-mechanism	Cholestyramine: Concomitant @DRUG$ administration decreased the mean AUC of total @DRUG$ approximately 55%.
-3	DDI-effect	The incremental LDL-C reduction due to adding @DRUG$ to @DRUG$ may be reduced by this interaction.
-4	DDI-advise	Patients who take both @DRUG$ and @DRUG$ should be carefully monitored.

@@ -7,8 +7,10 @@ from predict_temp import chem_dis_func, drug2_func, gene_dis_func
 from werkzeug.utils import redirect, secure_filename
 
 UPLOAD_DIR = "static/result/"
+INPUT_DIR = "dl/User_input/ori_input"
 app = Flask(__name__)
 app.config['UPLOAD_DIR'] = UPLOAD_DIR
+app.config['INPUT_DIR'] = INPUT_DIR
 Bootstrap(app)
 file_path = "result/"
 app.config['FLAG'] = 'not Ready'  
@@ -48,8 +50,8 @@ def download_genedis(filename):
     return send_from_directory("static/result/GeneDis_result.txt", filename="filename.txt")
 
 
-def hello():
-    cmd = ["sh", "dl/predict.sh"]
+def hello(input_file):
+    cmd = ["sh", "dl/predict.sh", "User_input/ori_input/"+input_file]
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE,
                          stdin=subprocess.PIPE)
@@ -76,8 +78,10 @@ def DrugDrug():
     elif request.method == 'POST':
         f = request.files['fileToUpload']
         fname = secure_filename(f.filename)
+        input_file_path = os.path.join(app.config['INPUT_DIR'], fname)
+        f.save(input_file_path)
 
-        hello()  # 이 함수에 사용자가 upload한 file
+        hello(fname)  # 이 함수에 사용자가 upload한 file
         result = for_show()
         fw = open("dl/User_output/DrugDrug_result.txt", 'w')  # predict result 저장 위치
         fw.write(result)
