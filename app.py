@@ -85,7 +85,6 @@ def DrugDrug():
         result = for_show()
         fw = open("dl/User_output/DrugDrug_result.txt", 'w')  # predict result 저장 위치
         fw.write(result)
-        print("Result: "+result)
         return render_template('Drug_Drug.html', model_result=result)
 
 

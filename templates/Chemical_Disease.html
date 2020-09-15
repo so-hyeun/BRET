@@ -132,9 +132,46 @@
           <img src="static/img/slide/chemprot_label.png">
         </div>
         <p>
-          <textarea cols="120" rows="10" readonly="readonly">&nbsp;{{model_result}}&nbsp;</textarea>
+          <div id="log" class="result-box" style="overflow-x:hidden; height: 200px; width: 100%; border:1px solid #aaaaaa"></div>
+          <script>
+            var str = "{{model_result|safe}}";
 
+            var start_span = '<span style="background-color:yellow">';
+            var end_span = '</span>';
+            var new_line = '<br>';
 
+            var start_index = 0;
+            var flag = false;
+            var end_index = str.length;
+            for (var i=0; i<str.length;){
+              if (!flag && str.substring(i,str.length).indexOf("<s>") == 0){
+                start_index = i+3;
+                i += 2;
+                flag = true;
+                continue;
+              }
+              else if (flag && str.substring(i,str.length).indexOf("</s>") == 0){
+                end_index = i;
+                i += 4;
+                var tag = str.substring(start_index, end_index);
+                var $span = $(start_span.concat(tag).concat(end_span));
+                $('#log').append($span);
+                flag = false;
+                continue;
+              }
+              else if (str.substring(i, str.length).indexOf("newline") == 0){
+                $('#log').append(new_line);
+                $('#log').append(new_line);
+                i += 7;
+              }
+              else {
+                if (!flag){
+                  $('#log').append(str.charAt(i));
+                }
+                i++;
+              }
+            }
+          </script>
         </p>
         </div>
     </section>
