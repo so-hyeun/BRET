@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*- 
 import os
+import json
 from flask_bootstrap import Bootstrap
 from flask import Flask, request, render_template, url_for, send_file, send_from_directory
 import subprocess
-from predict_temp import chem_dis_func, drug2_func, gene_dis_func
+from predict_temp import chem_dis_func, drug2_func, gene_dis_func, return_result_ddi, return_result_gad, return_result_chemprot
 from werkzeug.utils import redirect, secure_filename
 
 UPLOAD_DIR = "static/result/"
@@ -13,95 +13,114 @@ app.config['UPLOAD_DIR'] = UPLOAD_DIR
 app.config['INPUT_DIR'] = INPUT_DIR
 Bootstrap(app)
 file_path = "result/"
-app.config['FLAG'] = 'not Ready'  
-
+app.config['FLAG'] = 'not Ready'  ##Ready상태면 업로드한 파일이 있다! 즉, 다운로드를 할 수 있다
+app.config['OUTPUT_DIR'] = 'dl/User_output/'
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
 
-@app.route('/Chemical-Disease', methods=['GET', 'POST'])
-def ChemDis():
-    if 'download' in request.form and app.config['FLAG'] == "Ready":
-        download_chemdis("static/result/ChemDis-result.txt")
-    if request.method == 'GET':
-        return render_template('Chemical_Disease.html')
-    elif request.method == 'POST':
-        f = request.files['fileToUpload']
-        fname = secure_filename(f.filename)
 
-        result = chem_dis_func("file ")  # 이 함수에 사용자가 upload한 file
-        fw = open("static/result/ChemDis_result.txt", 'w')
-        fw.write(result)
-        app.config['FLAG'] = 'Ready'
-        return render_template('Chemical_Disease.html', model_result=result)
 
 
 def download_chemdis(filename):
-    return send_from_directory("static/result/ChemDis_result.txt", filename="Chemical_Disease.txt")
+    return send_file(file_name,
+                     attachment_filename='downloaded_file_name.csv',# 다운받아지는 파일 이름. 
+                     as_attachment=True)
 
 
 def download_drugdrug(filename):
-    return send_from_directory("static/result/DrugDrug_result.txt", filename="filename.txt")
+    return send_from_directory(filename, filename="filename.txt")
 
 
 def download_genedis(filename):
     return send_from_directory("static/result/GeneDis_result.txt", filename="filename.txt")
 
 
-def hello(input_file):
-    cmd = ["sh", "dl/predict.sh", "User_input/ori_input/"+input_file]
+def predict_ddi(input_file):
+    filename = input_file.split('.')[0]
+    cmd = ["sh", "dl/predict_ddi.sh", "User_input/ori_input/"+input_file, filename]
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE,
                          stdin=subprocess.PIPE)
     out, err = p.communicate()
-    print(err)
-    return str(out)
 
-def for_show():
-    cmd = ["python", "dl/show.py"]
+def predict_chemprot(input_file):
+    filename = input_file.split('.')[0]
+    cmd = ["sh", "dl/predict_chemprot.sh", "User_input/ori_input/"+input_file, filename]
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE,
                          stdin=subprocess.PIPE)
     out, err = p.communicate()
-    print(err)
-    return str(out)
+    
+def predict_gad(input_file):
+    filename = input_file.split('.')[0]+'.json'
+    print("filename: "+filename)
+    cmd = ["sh", "dl/predict_GAD.sh", "User_input/ori_input/"+input_file]
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                         stderr=subprocess.PIPE,
+                         stdin=subprocess.PIPE)
+    out, err = p.communicate()
+
+def model_performance_gad():
+    with open('dl/model_result/gad_result.json') as json_file:
+        json_data = json.load(json_file)
+        model_performance = json_data['metrics']['PRF']
+        f1 = model_performance.split('    ')[5]
+    return str(f1)
+    
 
 
-@app.route('/Drug-Drug', methods=['GET', 'POST'])
-def DrugDrug():
-    if 'download' in request.form:
-        download_chemdis("static/result/DrugDrug_result.txt")
+@app.route('/Chemical-Disease', methods=['GET', 'POST'])
+def ChemDis():
+    
     if request.method == 'GET':
-        return render_template('Drug_Drug.html')
+        return render_template('Chemical_Disease.html')
     elif request.method == 'POST':
         f = request.files['fileToUpload']
         fname = secure_filename(f.filename)
         input_file_path = os.path.join(app.config['INPUT_DIR'], fname)
         f.save(input_file_path)
+        predict_chemprot(fname)
+        result = return_result_chemprot(input_file_path,app.config['OUTPUT_DIR']+"Chem_Dis_result_"+fname )  # 이 함수에 사용자가 upload한 file
+        
+        
+        return render_template('Chemical_Disease.html', model_result=result)
 
-        hello(fname)  # 이 함수에 사용자가 upload한 file
-        result = for_show()
-        fw = open("dl/User_output/DrugDrug_result.txt", 'w')  # predict result 저장 위치
-        fw.write(result)
+@app.route('/Drug-Drug', methods=['GET', 'POST'])
+def DrugDrug():
+    
+    if request.method == 'GET':
+        return render_template('Drug_Drug.html')
+    elif request.method == 'POST':
+        f = request.files['fileToUpload']
+        fname = secure_filename(f.filename)
+        input_file_path = os.path.join(app.config['INPUT_DIR'],fname)
+        f.save(input_file_path)
+        
+        predict_ddi(fname)  # 이 함수에 사용자가 upload한 file
+        result = return_result_ddi(input_file_path,app.config['OUTPUT_DIR']+"Drug_Drug_result_"+fname )
+        
         return render_template('Drug_Drug.html', model_result=result)
 
 
 @app.route('/Gene-Disease', methods=['GET', 'POST'])
 def GeneDise():
-    if 'download' in request.form:
-        download_chemdis("static/result/GeneDis_result.txt")
+    
     if request.method == 'GET':
         return render_template('Gene_Disease.html')
     elif request.method == 'POST':
         f = request.files['fileToUpload']
         fname = secure_filename(f.filename)
-
-        result = gene_dis_func("file ")  # 이 함수에 사용자가 upload한 file
-        fw = open("static/result/GeneDis_result.txt", 'w')
-        fw.write(result)
-        return render_template('Gene_Disease.html', model_result=result)
+        input_file_path = os.path.join(app.config['INPUT_DIR'], fname)
+        f.save(input_file_path)
+        
+        predict_gad(fname)
+        result = return_result_gad(input_file_path,app.config['OUTPUT_DIR']+"Gene_Dis_result_"+fname )  # 이 함수에 사용자가 upload한 file
+        performance = model_performance_gad()
+        
+        return render_template('Gene_Disease.html', model_result=result, model_performance=performance)
 
 
 @app.route('/contact')

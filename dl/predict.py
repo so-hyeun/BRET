@@ -11,7 +11,8 @@ from mt_dnn.batcher import SingleTaskDataset, Collater
 from mt_dnn.model import MTDNNModel
 from data_utils.metrics import calc_metrics
 from mt_dnn.inference import eval_model
-from show import return_result
+#from show import return_result
+
 def dump(path, data):
     with open(path, 'w') as f:
         json.dump(data, f)
@@ -48,13 +49,16 @@ task_type = task_defs._task_type_map[args.task]
 metric_meta = task_defs._metric_meta_map[args.task]
 # load model
 checkpoint_path = "dl/"+args.checkpoint
-assert os.path.exists("dl/"+checkpoint_path)
+
+assert os.path.exists(checkpoint_path)
 if args.cuda:
-    state_dict = torch.load(checkpoint_path, map_location="cpu")
+    state_dict = torch.load(checkpoint_path)
 else:
     state_dict = torch.load(checkpoint_path, map_location="cpu")
 config = state_dict['config']
 config["cuda"] = args.cuda
+#print("-"*50)
+#print(config["cuda"])
 task_def = task_defs.get_task_def(prefix)
 task_def_list = [task_def]
 config['task_def_list'] = task_def_list
@@ -65,7 +69,9 @@ model = MTDNNModel(config, state_dict=state_dict)
 model.load(checkpoint_path)
 encoder_type = config.get('encoder_type', EncoderModelType.BERT)
 # load data
-test_data_set = SingleTaskDataset(args.prep_input, False, maxlen=args.max_seq_len, task_id=args.task_id, task_def=task_def)
+print("+"*50)
+print(args.prep_input)
+test_data_set = SingleTaskDataset("dl/"+args.prep_input, False, maxlen=args.max_seq_len, task_id=args.task_id, task_def=task_def)
 collater = Collater(is_train=False, encoder_type=encoder_type)
 test_data = DataLoader(test_data_set, batch_size=args.batch_size_eval, collate_fn=collater.collate_fn, pin_memory=args.cuda)
 
@@ -76,7 +82,7 @@ with torch.no_grad():
                                                                          use_cuda=args.cuda, with_label=args.with_label)
 
     results = {'metrics': test_metrics, 'predictions': test_predictions, 'uids': test_ids, 'scores': scores}
-    dump("dl/"+args.score, results)
+    dump("dl/"+args.score, results) ###
     print("="*50)
     #return_result()
     

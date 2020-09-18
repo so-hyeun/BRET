@@ -73,7 +73,9 @@ def build_data(data, dump_path, tokenizer, data_format=DataFormat.PremiseOnly,
         """Build data of single sentence tasks
         """
         with open(dump_path, 'w', encoding='utf-8') as writer:
+            #print(data)
             for idx, sample in enumerate(data):
+                
                 ids = sample['uid']
                 premise = sample['premise']
                 label = sample['label']
@@ -249,6 +251,7 @@ def main(args):
     assert os.path.exists(root)
 
     literal_model_type = args.model.split('-')[0].upper()
+    
     encoder_model = EncoderModelType[literal_model_type]
     literal_model_type = literal_model_type.lower()
     mt_dnn_suffix = literal_model_type
@@ -258,7 +261,7 @@ def main(args):
         mt_dnn_suffix += "_large"
 
     config_class, model_class, tokenizer_class = MODEL_CLASSES[literal_model_type]
-    tokenizer = tokenizer_class.from_pretrained(args.model, do_lower_case=do_lower_case)
+    tokenizer = tokenizer_class.from_pretrained("dl/mt-dnn-models/vocab.txt", do_lower_case=do_lower_case)
 
     if 'uncased' in args.model:
         mt_dnn_suffix = '{}_uncased'.format(mt_dnn_suffix)
@@ -273,7 +276,7 @@ def main(args):
         os.mkdir(mt_dnn_root)
 
     task_defs = TaskDefs(args.task_def)
-
+    
     for task in task_defs.get_task_names():
         task_def = task_defs.get_task_def(task)
         logger.info("Task %s" % task)

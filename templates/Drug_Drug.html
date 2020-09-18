@@ -113,7 +113,7 @@
         <h6>EX) Concomitant <span style="background-color:yellow"> @DRUG$ </span> administration decreased the mean AUC of total <span style="background-color:yellow"> @DRUG$ </span>approximately 55%.</h6>
         <div> &nbsp; </div>
         <div class="d-flex justify-content-between align-items-center">
-          <form action="http://localhost:5000/Drug-Drug" method="post" enctype="multipart/form-data">
+          <form action="http://203.255.176.237:5000/Drug-Drug" method="post" enctype="multipart/form-data">
             Select file to upload:
             <input type="file" name="fileToUpload" id="fileToUpload" >
             <input type="submit" value="Upload file" name="submit" class="btn btn-danger" >
@@ -121,6 +121,15 @@
           </form>
       </div>
         <div> &nbsp; </div>
+        <div id="result_down"></div>
+        <script>
+          var str1 = "<a href =";
+          var str2 = "{{result_file}}";
+          var str3 = ' download = "Drug_Drug Relation Extraction Result.txt"><button type=button class="btn btn-danger">Download</button></a>';
+
+          var $a = $(str1.concat(str2).concat(str3));
+          $("#result_down").append($a);
+        </script>
         <a href = "static/result/DrugDrug_result.txt" download = "Drug_Drug Relation Extraction Result.txt"><button type=button class="btn btn-danger">Download</button></a>
         
         <button type="button" id="btn" class="btn btn-danger">About labels</button>
