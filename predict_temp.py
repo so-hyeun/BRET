@@ -35,10 +35,11 @@ def return_result_ddi(f, out_file):
                 else:
                     result = 'DDI-false'
                 user_result = str(user)+' '+str(result)+'newline'
+                user_result_down =  str(user)+' '+str(result)+'\n'
                 user_result_ = re.sub(r"@DRUG\$",r'<s>@DRUG$</s>',user_result)
-                user_result_file = user_result
+                
                 user_result_list+= user_result_
-                writer.write(user_result_file)
+                writer.write(user_result_down)
                 #print(user_result_list)
     return user_result_list
 
@@ -47,7 +48,7 @@ def return_result_chemprot(f, out_file):
     
     
     f = open(f)
-    user_input = f.readlines()[1:]
+    user_input = f.readlines()
     user_result_list = ""
     with open('dl/model_result/chemprot_result.json') as json_file: #model result json
         with open( out_file,"w") as writer:    #output 쓰는 file

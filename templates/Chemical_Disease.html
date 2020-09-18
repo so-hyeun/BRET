@@ -123,11 +123,18 @@
           </form>
       </div>
         <div> &nbsp; </div>
-        
-      <a href = "static/result/ChemDis_result.txt" download = "Chemicla_Disease Relation Extraction Result.txt"><button type=button class="btn btn-danger">Download</button></a>
+        <div id="result_down"></div>
+        <script>
+          var str1 = '<a href ="';
+          var str2 = "{{result_file_path}}";
+          var str3 = '" download = "{{result_file_name}}"><button type=button class="btn btn-danger" style="margin-right: 4px">Download</button></a> ';
 
-        
-        <button type="button" id="btn" class="btn btn-danger">About labels</button>
+          var $a = $(str1.concat(str2).concat(str3));
+          var $l = $(' <button type="button" id="btn" class="btn btn-danger">About labels</button>')
+          $("#result_down").append($a);
+          $("#result_down").append($l);
+        </script>
+
         <div id="displayDiv">
           <img src="static/img/slide/chemprot_label.png">
         </div>
@@ -173,7 +180,11 @@
             }
           </script>
         </p>
-        </div>
+
+        <h5>Model Performance</h5>
+        f1 score: {{model_performance}}
+
+      </div>
     </section>
     <!-- End File upload -->
 

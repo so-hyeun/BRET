@@ -1,0 +1,9 @@
+DDI-DrugBank.d572.s0.p0	@DRUG$: Concomitant @DRUG$ administration decreased the mean AUC of total ezetimibe approximately 55%.	DDI-false
+DDI-DrugBank.d572.s0.p1	@DRUG$: Concomitant cholestyramine administration decreased the mean AUC of total @DRUG$ approximately 55%.	DDI-false
+DDI-DrugBank.d572.s0.p2	Cholestyramine: Concomitant @DRUG$ administration decreased the mean AUC of total @DRUG$ approximately 55%.	DDI-mechanism
+DDI-DrugBank.d572.s1.p0	The incremental LDL-C reduction due to adding @DRUG$ to @DRUG$ may be reduced by this interaction.	DDI-effect
+DDI-DrugBank.d572.s10.p0	Patients who take both @DRUG$ and @DRUG$ should be carefully monitored.	DDI-advise
+DDI-DrugBank.d572.s11.p0	Carcinogenesis, Mutagenesis, Impairment of Fertility A 104-week dietary carcinogenicity study with @DRUG$ was conducted in rats at doses up to 1500 mg/kg/day (males) and 500 mg/kg/day (females) (~20 times the human exposure at 10 mg daily based on AUC0-24hr for total @DRUG$).	DDI-false
+DDI-DrugBank.d572.s12.p0	A 104-week dietary carcinogenicity study with @DRUG$ was also conducted in mice at doses up to 500 mg/kg/day (>150 times the human exposure at 10 mg daily based on AUC0-24hr for total @DRUG$).	DDI-false
+DDI-DrugBank.d572.s17.p0	In oral (gavage) fertility studies of @DRUG$ conducted in rats, there was no evidence of reproductive toxicity at doses up to 1000 mg/kg/day in male or female rats (~7 times the human exposure at 10 mg daily based on AUC0-24hr for total @DRUG$).	DDI-false
+DDI-DrugBank.d572.s2.p0	@DRUG$: The safety and effectiveness of @DRUG$ administered with fibrates have not been established.	DDI-false

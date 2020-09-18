@@ -1,4 +1,5 @@
 import os
+import shutil
 import json
 from flask_bootstrap import Bootstrap
 from flask import Flask, request, render_template, url_for, send_file, send_from_directory
@@ -13,20 +14,16 @@ app.config['UPLOAD_DIR'] = UPLOAD_DIR
 app.config['INPUT_DIR'] = INPUT_DIR
 Bootstrap(app)
 file_path = "result/"
-app.config['FLAG'] = 'not Ready'  ##Ready상태면 업로드한 파일이 있다! 즉, 다운로드를 할 수 있다
-app.config['OUTPUT_DIR'] = 'dl/User_output/'
+app.config['FLAG'] = 'not Ready'  
+app.config['OUTPUT_DIR'] = 'static/result/'
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
-
-
-
-
 def download_chemdis(filename):
     return send_file(file_name,
-                     attachment_filename='downloaded_file_name.csv',# 다운받아지는 파일 이름. 
+                     attachment_filename='downloaded_file_name.csv', 
                      as_attachment=True)
 
 
@@ -69,6 +66,20 @@ def model_performance_gad():
         model_performance = json_data['metrics']['PRF']
         f1 = model_performance.split('    ')[5]
     return str(f1)
+
+def model_performance_chemprot():
+    with open('dl/model_result/chemprot_result.json') as json_file:
+        json_data = json.load(json_file)
+        model_performance = json_data['metrics']['PRF']
+        f1 = model_performance.split('    ')[5]
+    return str(f1)
+
+def model_performance_ddi():
+    with open('dl/model_result/ddi_result.json') as json_file:
+        json_data = json.load(json_file)
+        model_performance = json_data['metrics']['PRF']
+        f1 = model_performance.split('    ')[5]
+    return str(f1)
     
 
 
@@ -82,11 +93,15 @@ def ChemDis():
         fname = secure_filename(f.filename)
         input_file_path = os.path.join(app.config['INPUT_DIR'], fname)
         f.save(input_file_path)
+        
         predict_chemprot(fname)
-        result = return_result_chemprot(input_file_path,app.config['OUTPUT_DIR']+"Chem_Dis_result_"+fname )  # 이 함수에 사용자가 upload한 file
+        output_file_name = "Chem_Dis_result_"+fname
+        output_file_path = app.config['OUTPUT_DIR']+output_file_name
+        result = return_result_chemprot(input_file_path, output_file_path)  
         
+        performance = model_performance_chemprot()
         
-        return render_template('Chemical_Disease.html', model_result=result)
+        return render_template('Chemical_Disease.html', model_result=result, model_performance=performance, result_file_path=output_file_path, result_file_name=output_file_name)
 
 @app.route('/Drug-Drug', methods=['GET', 'POST'])
 def DrugDrug():
@@ -99,10 +114,14 @@ def DrugDrug():
         input_file_path = os.path.join(app.config['INPUT_DIR'],fname)
         f.save(input_file_path)
         
-        predict_ddi(fname)  # 이 함수에 사용자가 upload한 file
-        result = return_result_ddi(input_file_path,app.config['OUTPUT_DIR']+"Drug_Drug_result_"+fname )
+        predict_ddi(fname)  
+        output_file_name = "Drug_Drug_result_"+fname
+        output_file_path = app.config['OUTPUT_DIR']+output_file_name
+        result = return_result_ddi(input_file_path, output_file_path)
         
-        return render_template('Drug_Drug.html', model_result=result)
+        performance = model_performance_ddi()
+        
+        return render_template('Drug_Drug.html', model_result=result, model_performance=performance, result_file_path=output_file_path, result_file_name=output_file_name)
 
 
 @app.route('/Gene-Disease', methods=['GET', 'POST'])
@@ -117,10 +136,13 @@ def GeneDise():
         f.save(input_file_path)
         
         predict_gad(fname)
-        result = return_result_gad(input_file_path,app.config['OUTPUT_DIR']+"Gene_Dis_result_"+fname )  # 이 함수에 사용자가 upload한 file
+        output_file_name = "Gene_Dis_result_"+fname
+        output_file_path = app.config['OUTPUT_DIR']+output_file_name
+        result = return_result_gad(input_file_path, output_file_path)  
+        
         performance = model_performance_gad()
         
-        return render_template('Gene_Disease.html', model_result=result, model_performance=performance)
+        return render_template('Gene_Disease.html', model_result=result, model_performance=performance, result_file_path=output_file_path, result_file_name=output_file_name)
 
 
 @app.route('/contact')
@@ -129,4 +151,4 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="203.255.176.237", port=5000)

@@ -1,1 +1,0 @@
-<s>@DRUG$</s> : Concomitant <s>@DRUG$</s> administration decreased the mean AUC of total ezetimibe approximately 55%. DDI-falsenewline<s>@DRUG$</s> : Concomitant <s>@DRUG$</s> administration decreased the mean AUC of total ezetimibe approximately 55%. DDI-false
