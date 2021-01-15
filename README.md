@@ -1,5 +1,5 @@
 # BRET: Biomedical Relation Extraction Tool
--
+
 
 : We apply weighting method to MT-DNN model to improve the performance of relation extraction task.
 Auxillary tasks such as NER, QA, Multi-label Classification, were used to train our model with main task: RE.
